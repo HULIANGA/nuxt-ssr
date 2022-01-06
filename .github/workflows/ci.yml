@@ -53,6 +53,9 @@ jobs:
       - name: Create dist folder
         run: mkdir dist && cp -r .nuxt dist/ && cp -r static dist/ && cp nuxt.config.js dist/ && cp package.json dist/ && cp ecosystem.config.js dist/
 
+      - name: install production
+        run: cd dist && npm install --production && cd ../
+
       # 部署到阿里云
       - name: Deploy to Aliyun
         uses: easingthemes/ssh-deploy@v2.1.1
@@ -69,4 +72,15 @@ jobs:
           REMOTE_USER: "root"
           # 目标地址 你在服务器上部署代码的地方
           TARGET: "/home/html/nuxt-ssr"
+
+      - name: Start server
+        uses: appleboy/ssh-action@master
+        with:
+          host: "120.25.159.52"
+          username: "root"
+          key: ${{ secrets.ACCESS_KEY_SECRET }}
+          port: "22"
+          script: |
+            cd /home/html/nuxt-ssr
+            pm2 reload
 
