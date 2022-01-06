@@ -51,7 +51,7 @@ jobs:
         run: yarn build
         
       - name: Create dist folder
-        run: mkdir dist && cp -r .nuxt dist/ && cp -r static dist/ && cp nuxt.config.js dist/ && cp package.json dist/
+        run: mkdir dist && cp -r .nuxt dist/ && cp -r static dist/ && cp nuxt.config.js dist/ && cp package.json dist/ && cp ecosystem.config.js dist/s
 
       # 部署到阿里云
       - name: Deploy to Aliyun
