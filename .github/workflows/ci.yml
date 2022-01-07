@@ -82,6 +82,6 @@ jobs:
           port: "22"
           script: |
             cd /home/html/nuxt-ssr
-            nvm ls
-            ll
-            pm2 reload
+            ls
+            node -v
+            pm2 reload NuxtSSR
